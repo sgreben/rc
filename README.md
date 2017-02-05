@@ -6,12 +6,12 @@
 `rc` is implemented using [Z3](https://github.com/Z3Prover/z3), the automatic theorem prover built by Microsoft Research.
 
 **Table of Contents** 
-- [Installation](#)
-    - [Maven dependency](#)
-- [Usage](#)
-    - [Using the builder API](#)
-    - [Using the declaration API](#)
-    - [Performing analysis](#)
+- [Installation](#Installation)
+    - [Maven dependency](#Maven-dependency)
+- [Usage](#Usage)
+    - [Using the builder API](#using-the-builder-api)
+    - [Using the declaration API](#using-the-declaration-api)
+    - [Performing analysis](#performing-analysis)
 
 ## Installation
 ### Maven dependency
