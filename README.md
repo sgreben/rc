@@ -6,9 +6,9 @@
 `rc` is implemented using [Z3](https://github.com/Z3Prover/z3), the automatic theorem prover built by Microsoft Research.
 
 **Table of Contents** 
-- [Installation](#Installation)
-    - [Maven dependency](#Maven-dependency)
-- [Usage](#Usage)
+- [Installation](#installation)
+    - [Maven dependency](#maven-dependency)
+- [Usage](#usage)
     - [Using the builder API](#using-the-builder-api)
     - [Using the declaration API](#using-the-declaration-api)
     - [Performing analysis](#performing-analysis)
