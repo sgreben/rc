@@ -1,0 +1,4 @@
+name: rule1
+when: y > 0 && x < 10
+then:
+  z: 123

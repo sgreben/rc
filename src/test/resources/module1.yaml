@@ -1,0 +1,17 @@
+name: module1
+types:
+  Dummy:
+    values:
+      - DUMMY1
+      - DUMMY2
+ruleSets:
+  - name: ruleSet1
+    variables:
+      x: int
+      y: real
+      z: bool
+      dummy: Dummy
+    rules:
+      - when: x < y && z
+        then:
+          dummy: DUMMY1

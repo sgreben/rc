@@ -1,0 +1,13 @@
+name: ruleSet1
+variables:
+  x : int
+  y : real
+  z: bool
+rules:
+  - name: rule1
+    when: x > y
+    then:
+      z: true
+  - when: x <= y
+    then:
+      z: x = y
