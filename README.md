@@ -4,6 +4,15 @@
 
 
 `rc` is implemented using [Z3](https://github.com/Z3Prover/z3), the automatic theorem prover built by Microsoft Research.
+
+**Table of Contents** 
+- [Installation](#)
+    - [Maven dependency](#)
+- [Usage](#)
+    - [Using the builder API](#)
+    - [Using the declaration API](#)
+    - [Performing analysis](#)
+
 ## Installation
 ### Maven dependency
 
@@ -166,7 +175,7 @@ RuleSet myRuleSet = context.buildRuleSet()
     .build();
 ```
 
-Done! You can now skip ahead to [Performing analysis](#performing-analysis) to learn how to check the rule set for completeness, overlap, and constraint satisfaction.
+Done! You can now skip ahead to [Performing analysis](#) to learn how to check the rule set for completeness, overlap, and constraint satisfaction.
 
 ### Using the declaration API
 
