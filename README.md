@@ -158,7 +158,12 @@ Rule rule4 = context.buildRule()
         eb.GreaterOrEqual(temperature, temperatureGoal),
         eb.Greater(motion, context.buildValue().real(0.1))
     ))
-    .withPostcondition(eb.Equal(stateOut, state))
+    .withPostcondition(
+        eb.Equal(
+            stateOut, 
+            context.buildValue().enumeration("STANDBY")
+        )
+    )
     .build();
 
 ```
