@@ -67,7 +67,7 @@ To start, we grab an instance of the `Context` class, which we will use to acces
 ```java
 import io.github.sgreben.rc.Context;
 
-Context = new Context();
+Context context = new Context();
 ```
 
 Next, we construct the enumeration type:
