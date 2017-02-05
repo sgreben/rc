@@ -25,4 +25,9 @@ public class RealType implements Type {
     public Sort toZ3Sort() {
         return context.getRealSort();
     }
+
+    @Override
+    public String toString() {
+        return "RealType";
+    }
 }

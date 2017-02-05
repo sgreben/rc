@@ -26,4 +26,9 @@ public class IntType implements Type {
     public Sort toZ3Sort() {
         return context.getIntSort();
     }
+
+    @Override
+    public String toString() {
+        return "IntType";
+    }
 }

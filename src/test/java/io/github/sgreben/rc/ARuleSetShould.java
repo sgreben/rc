@@ -4,6 +4,7 @@ import io.github.sgreben.rc.builders.ExpressionBuilder;
 import io.github.sgreben.rc.builders.RuleSetBuilder;
 import io.github.sgreben.rc.expressions.Expression;
 import io.github.sgreben.rc.values.EnumValue;
+import io.github.sgreben.rc.values.IntegerValue;
 import io.github.sgreben.rc.values.RealValue;
 import io.github.sgreben.rc.values.Value;
 import org.junit.Test;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
+import static org.hamcrest.number.OrderingComparison.lessThan;
 import static org.junit.Assert.assertThat;
 
 public class ARuleSetShould {
@@ -247,5 +249,37 @@ public class ARuleSetShould {
         assertThat(constraintCounterExamples, is(notNullValue()));
         assertThat(constraintCounterExamples.size(), is(equalTo(1)));
         assertThat(((RealValue) counterExample.get(alpha)).getValue(), is(greaterThan(((RealValue) counterExample.get(beta)).getValue())));
+    }
+
+    @Test public void
+    not_be_complete_when_given_the_readme_rule_set() throws SolverException {
+        RuleSet ruleSet = TestFixtures.readMeRuleSet(context);
+
+        assertThat(ruleSet.isComplete(), is(equalTo(false)));
+    }
+
+    @Test public void
+    find_a_completeness_counterexample_when_given_the_readme_rule_set() throws SolverException {
+        RuleSet ruleSet = TestFixtures.readMeRuleSet(context);
+        Variable temperature = context.buildExpression()
+                .variable("temperature")
+                .ofType(context.buildType().integer());
+        Variable temperatureGoal = context.buildExpression()
+                .variable("temperatureGoal")
+                .ofType(context.buildType().integer());
+        Variable motion = context.buildExpression()
+                .variable("motion")
+                .ofType(context.buildType().real());
+
+        Map<Variable, Value> completenessCounterExample = ruleSet.completenessCounterExample();
+
+        assertThat(completenessCounterExample, is(notNullValue()));
+
+        int temperatureValue = ((IntegerValue) completenessCounterExample.get(temperature)).getValue();
+        int temperatureGoalValue = ((IntegerValue) completenessCounterExample.get(temperatureGoal)).getValue();
+        double motionValue = ((RealValue) completenessCounterExample.get(motion)).getValue();
+
+        assertThat(temperatureValue, is(lessThan(temperatureGoalValue)));
+        assertThat(motionValue, is(lessThan(0.3)));
     }
 }

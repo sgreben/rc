@@ -24,7 +24,6 @@ public class Context {
         return new RuleSetBuilder(typeEnvironment, z3Context);
     }
 
-
     public RuleBuilder buildRule() {
         return new RuleBuilder(z3Context);
     }

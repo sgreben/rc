@@ -19,6 +19,11 @@ public class BoolType implements Type {
     }
 
     @Override
+    public String toString() {
+        return "BoolType";
+    }
+
+    @Override
     public int hashCode() {
         return context.hashCode();
     }

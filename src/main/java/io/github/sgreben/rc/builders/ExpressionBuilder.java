@@ -65,6 +65,12 @@ public class ExpressionBuilder {
         return new BooleanExpression(z3Context.mkEq(left.toZ3Expr(), right.toZ3Expr()), variables);
     }
 
+    public BooleanExpression NotEqual(Expression left, Expression right) {
+        Set<Variable> variables = new HashSet<>(left.freeVariables());
+        variables.addAll(right.freeVariables());
+        return new BooleanExpression(z3Context.mkNot(z3Context.mkEq(left.toZ3Expr(), right.toZ3Expr())), variables);
+    }
+
     public BooleanExpression Greater(Expression left, Expression right) {
         Set<Variable> variables = new HashSet<>(left.freeVariables());
         variables.addAll(right.freeVariables());
@@ -99,6 +105,12 @@ public class ExpressionBuilder {
         Set<Variable> variables = new HashSet<>(left.freeVariables());
         variables.addAll(right.freeVariables());
         return new BooleanExpression(z3Context.mkAnd((BoolExpr) left.toZ3Expr(), (BoolExpr) right.toZ3Expr()), variables);
+    }
+
+    public BooleanExpression Implies(Expression left, Expression right) {
+        Set<Variable> variables = new HashSet<>(left.freeVariables());
+        variables.addAll(right.freeVariables());
+        return new BooleanExpression(z3Context.mkImplies((BoolExpr) left.toZ3Expr(), (BoolExpr) right.toZ3Expr()), variables);
     }
 
     public BooleanExpression Not(BooleanExpression expression) {

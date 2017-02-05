@@ -15,12 +15,14 @@ expr:   '(' expr ')'                         #parensExpr
        | expr '+' expr                       #addExpr
        | expr '-' expr                       #subExpr
        | expr ('='|'==') expr                #eqExpr
+       | expr '!=' expr                      #neqExpr
        | expr '<=' expr                      #leqExpr
        | expr '>=' expr                      #geqExpr
        | expr '>' expr                       #gtExpr
        | expr '<' expr                       #ltExpr
        | expr '&&' expr                      #andExpr
        | expr '||' expr                      #orExpr
+       | expr '=>' expr                      #impExpr
        | FLOAT                               #floatExpr
        | INT                                 #intExpr
         ;
