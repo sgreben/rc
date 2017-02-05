@@ -230,7 +230,7 @@ To perform analysis on the module, we have to *compile* it using a `Context`:
 
 ```java
 Context context = new Context();
-Module module = moduleDeclaration.compile(module);
+Module module = moduleDeclaration.compile(context);
 ```
 
 We can now obtain the rule set we defined above:
