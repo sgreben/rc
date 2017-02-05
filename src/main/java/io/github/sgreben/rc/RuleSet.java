@@ -22,7 +22,7 @@ public class RuleSet {
         this.typeEnvironment = typeEnvironment;
         this.z3Context = z3Context;
         this.name = name;
-        this.rules = rules;
+        this.rules = new ArrayList<>(rules);
         this.solver = z3Context.mkSolver();
         variables = new HashSet<>();
         for (Rule rule : rules) {
@@ -91,8 +91,10 @@ public class RuleSet {
     }
 
     public Map<Variable, Value> completenessCounterExample() throws SolverException {
+        solver.push();
         assertConjunctionOfRuleNegations();
         Status status = solver.check();
+        solver.pop();
         switch (status) {
             case SATISFIABLE:
                 return getModel();
@@ -111,6 +113,46 @@ public class RuleSet {
             result.put(variable, translateModelValue(modelValue));
         }
         return result;
+    }
+
+    public boolean isOverlapping() throws SolverException {
+        for (int i = 0; i < rules.size(); ++i) {
+            for (int j = i + 1; j < rules.size(); ++j) {
+                solver.push();
+                rules.get(i).assertPreconditions(solver);
+                rules.get(j).assertPreconditions(solver);
+                Status status = solver.check();
+                solver.pop();
+                if (!isUnsatisfiable(status)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public List<RuleOverlap> overlaps() throws SolverException {
+        List<RuleOverlap> overlaps = new LinkedList<>();
+        for (int i = 0; i < rules.size(); ++i) {
+            for (int j = i + 1; j < rules.size(); ++j) {
+                solver.push();
+                Rule first = rules.get(i);
+                Rule second = rules.get(j);
+                first.assertPreconditions(solver);
+                second.assertPreconditions(solver);
+                Status status = solver.check();
+                solver.pop();
+                if (!isUnsatisfiable(status)) {
+                    Map<Variable, Value> model = getModel();
+                    overlaps.add(new RuleOverlap(
+                        new RuleOverlap.IndexedRule(first, i),
+                        new RuleOverlap.IndexedRule(second, j),
+                        model
+                    ));
+                }
+            }
+        }
+        return overlaps;
     }
 
     private Value translateModelValue(Expr modelValue) {
