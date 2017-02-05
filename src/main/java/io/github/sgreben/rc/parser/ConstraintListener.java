@@ -82,6 +82,18 @@ public interface ConstraintListener extends ParseTreeListener {
 	 */
 	void exitSubExpr(ConstraintParser.SubExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code neqExpr}
+	 * labeled alternative in {@link ConstraintParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNeqExpr(ConstraintParser.NeqExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code neqExpr}
+	 * labeled alternative in {@link ConstraintParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNeqExpr(ConstraintParser.NeqExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code floatExpr}
 	 * labeled alternative in {@link ConstraintParser#expr}.
 	 * @param ctx the parse tree
@@ -153,6 +165,18 @@ public interface ConstraintListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMulExpr(ConstraintParser.MulExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code impExpr}
+	 * labeled alternative in {@link ConstraintParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterImpExpr(ConstraintParser.ImpExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code impExpr}
+	 * labeled alternative in {@link ConstraintParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitImpExpr(ConstraintParser.ImpExprContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code leqExpr}
 	 * labeled alternative in {@link ConstraintParser#expr}.

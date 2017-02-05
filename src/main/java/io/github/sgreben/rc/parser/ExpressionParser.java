@@ -34,6 +34,19 @@ public class ExpressionParser {
 
 
     private class ExprBuilderVisitor extends ConstraintBaseVisitor<Expression> {
+        @Override
+        public Expression visitNeqExpr(ConstraintParser.NeqExprContext ctx) {
+            Expression left = ctx.expr().get(0).accept(this);
+            Expression right = ctx.expr().get(1).accept(this);
+            return context.buildExpression().NotEqual(left, right);
+        }
+
+        @Override
+        public Expression visitImpExpr(ConstraintParser.ImpExprContext ctx) {
+            Expression left = ctx.expr().get(0).accept(this);
+            Expression right = ctx.expr().get(1).accept(this);
+            return context.buildExpression().Implies(left, right);
+        }
 
         @Override
         public Expression visitIntExpr(ConstraintParser.IntExprContext ctx) {

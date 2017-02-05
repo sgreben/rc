@@ -55,6 +55,13 @@ public interface ConstraintVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSubExpr(ConstraintParser.SubExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code neqExpr}
+	 * labeled alternative in {@link ConstraintParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNeqExpr(ConstraintParser.NeqExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code floatExpr}
 	 * labeled alternative in {@link ConstraintParser#expr}.
 	 * @param ctx the parse tree
@@ -96,6 +103,13 @@ public interface ConstraintVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMulExpr(ConstraintParser.MulExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code impExpr}
+	 * labeled alternative in {@link ConstraintParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImpExpr(ConstraintParser.ImpExprContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code leqExpr}
 	 * labeled alternative in {@link ConstraintParser#expr}.
