@@ -6,15 +6,11 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Module implements Iterable<RuleSet> {
-    private final Context z3Context;
     private final String name;
-    private final TypeEnvironment typeEnvironment;
     private final List<RuleSet> ruleSets;
 
-    public Module(Context z3Context, String name, TypeEnvironment typeEnvironment, List<RuleSet> ruleSets) {
-        this.z3Context = z3Context;
+    public Module(String name, List<RuleSet> ruleSets) {
         this.name = name;
-        this.typeEnvironment = typeEnvironment;
         this.ruleSets = ruleSets;
     }
 
@@ -25,6 +21,10 @@ public class Module implements Iterable<RuleSet> {
             }
         }
         return null;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

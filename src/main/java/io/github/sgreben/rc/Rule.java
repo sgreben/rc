@@ -15,12 +15,14 @@ public class Rule {
     private final List<BooleanExpression> preconditions;
     private final List<BooleanExpression> postconditions;
     private final Set<Variable> variables;
+    private String sourceString;
 
-    public Rule(Context z3Context, String name, List<BooleanExpression> preconditions, List<BooleanExpression> postconditions) {
+    public Rule(Context z3Context, String name, List<BooleanExpression> preconditions, List<BooleanExpression> postconditions, String sourceString) {
         this.z3Context = z3Context;
         this.name = name;
         this.preconditions = preconditions;
         this.postconditions = postconditions;
+        this.sourceString = sourceString;
         this.variables = new HashSet<>();
         for (BooleanExpression precondition : this.preconditions) {
             variables.addAll(precondition.freeVariables());
@@ -28,6 +30,10 @@ public class Rule {
         for (BooleanExpression postcondition : this.postconditions) {
             variables.addAll(postcondition.freeVariables());
         }
+    }
+
+    public String getSourceString() {
+        return sourceString;
     }
 
     public void assertNegationOfPreconditions(Solver solver) {

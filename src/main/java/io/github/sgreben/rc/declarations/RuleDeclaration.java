@@ -54,6 +54,7 @@ public class RuleDeclaration {
                     context.buildExpression().Equal(variables.get(postcondition.getKey()), expression);
             ruleBuilder.withPostcondition(booleanExpression);
         }
+        ruleBuilder.withSourceString(when);
         return ruleBuilder.build();
     }
 

@@ -41,6 +41,6 @@ public class Context {
     }
 
     public ModuleBuilder buildModule() {
-        return new ModuleBuilder(typeEnvironment, z3Context);
+        return new ModuleBuilder();
     }
 }

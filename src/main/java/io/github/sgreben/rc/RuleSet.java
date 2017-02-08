@@ -30,6 +30,10 @@ public class RuleSet {
         }
     }
 
+    public Set<Variable> getVariables() {
+        return variables;
+    }
+
     public String getName() {
         return name;
     }
@@ -144,11 +148,17 @@ public class RuleSet {
                 solver.pop();
                 if (!isUnsatisfiable(status)) {
                     Map<Variable, Value> model = getModel();
+                    solver.push();
+                    first.assertPostconditions(solver);
+                    second.assertPostconditions(solver);
+                    Status postconditionStatus = solver.check();
+                    solver.pop();
+                    boolean isConsistent = !isUnsatisfiable(status);
                     overlaps.add(new RuleOverlap(
-                        new RuleOverlap.IndexedRule(first, i),
-                        new RuleOverlap.IndexedRule(second, j),
-                        model
-                    ));
+                            new RuleOverlap.IndexedRule(first, i),
+                            new RuleOverlap.IndexedRule(second, j),
+                            model,
+                            isConsistent));
                 }
             }
         }

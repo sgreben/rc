@@ -9,14 +9,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ModuleBuilder {
-    private final Context z3Context;
-    private final TypeEnvironment typeEnvironment;
     private final List<RuleSet> ruleSets;
     private String name = null;
 
-    public ModuleBuilder(TypeEnvironment typeEnvironment, Context z3Context) {
-        this.z3Context = z3Context;
-        this.typeEnvironment = typeEnvironment;
+    public ModuleBuilder() {
         this.ruleSets = new LinkedList<>();
     }
 
@@ -31,6 +27,6 @@ public class ModuleBuilder {
     }
 
     public Module build() {
-        return new Module(z3Context, name, typeEnvironment, ruleSets);
+        return new Module(name, ruleSets);
     }
 }

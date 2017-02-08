@@ -8,11 +8,21 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class ExpressionParser {
     private final Map<String, Variable> variables;
     private Context context;
+
+    public ExpressionParser(Context context, Set<Variable> variables) {
+        this.context = context;
+        this.variables = new HashMap<>();
+        for(Variable variable: variables) {
+            this.variables.put(variable.getName(), variable);
+        }
+    }
 
     public ExpressionParser(Context context, Map<String, Variable> variables) {
         this.context = context;

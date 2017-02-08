@@ -8,11 +8,17 @@ public class RuleOverlap {
     private final IndexedRule first;
     private final IndexedRule second;
     private final Map<Variable, Value> example;
+    private final boolean isConsistent;
 
-    public RuleOverlap(IndexedRule first, IndexedRule second, Map<Variable, Value> example) {
+    public RuleOverlap(IndexedRule first, IndexedRule second, Map<Variable, Value> example, boolean isConsistent) {
         this.first = first;
         this.second = second;
         this.example = example;
+        this.isConsistent = isConsistent;
+    }
+
+    public boolean isConsistent() {
+        return isConsistent;
     }
 
     public static class IndexedRule {

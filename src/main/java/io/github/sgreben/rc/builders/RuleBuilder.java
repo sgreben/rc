@@ -10,6 +10,7 @@ import java.util.List;
 public class RuleBuilder {
     private final Context z3Context;
     private String name;
+    private String sourceString;
     private List<BooleanExpression> preconditions;
     private List<BooleanExpression> postconditions;
 
@@ -25,6 +26,11 @@ public class RuleBuilder {
         return this;
     }
 
+    public RuleBuilder withSourceString(String source) {
+        this.sourceString = source;
+        return this;
+    }
+
     public RuleBuilder withPrecondition(BooleanExpression precondition) {
         this.preconditions.add(precondition);
         return this;
@@ -36,7 +42,7 @@ public class RuleBuilder {
     }
 
     public Rule build() {
-        return new Rule(z3Context, name, preconditions, postconditions);
+        return new Rule(z3Context, name, preconditions, postconditions, sourceString);
     }
 
 }
