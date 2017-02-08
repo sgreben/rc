@@ -153,7 +153,7 @@ public class RuleSet {
                     second.assertPostconditions(solver);
                     Status postconditionStatus = solver.check();
                     solver.pop();
-                    boolean isConsistent = !isUnsatisfiable(status);
+                    boolean isConsistent = !isUnsatisfiable(postconditionStatus);
                     overlaps.add(new RuleOverlap(
                             new RuleOverlap.IndexedRule(first, i),
                             new RuleOverlap.IndexedRule(second, j),
